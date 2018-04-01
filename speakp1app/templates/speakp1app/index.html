@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm asidesm">
+    </div>
+    <div class="col-sm">
+      <br>
+      <h2>List of questions</h2>
+      <p>List of common speaking test part one questions.</p>
+      <hr>
+
+      {% if topic_list %}
+
+      {% for topic in topic_list %}
+
+        {% if topic.answers__uid == request.user.id %}
+          <a class="btn btn-secondary col-lg-12 col-sm-12" data-toggle="collapse"
+          href="#collapse{{topic.id}}" role="button" aria-expanded="false"
+          aria-controls="collapse{{topic.id}}" style="margin:3px; word-wrap: break-word; white-space: normal;">
+              {{ topic.sp1topic }} &nbsp;&nbsp;&nbsp;<span class="badge badge-light" id="ans{{topic.id}}">*</span>
+          </a>
+              <div class="collapse" id="collapse{{topic.id}}">
+                <div class="card card-body">
+                  <p class="alert alert-success" id="ans_{{ topic.answers__id }}">{{ topic.answers__answer }}</p>
+                  <div class="text-right">
+                    <button class="btn btn-outline-success btn-sm editbutton" type="button" id="ed_{{ topic.answers__id }}">Edit</button>
+                    <button class="btn btn-outline-danger btn-sm delbutton" type="button" id="del_{{ topic.answers__id }}">Delete</button>
+                  </div>
+                </div>
+
+              </div>
+
+        {% else %}
+          <a class="btn btn-secondary col-lg-12 col-sm-12" data-toggle="collapse"
+          href="#collapse{{topic.id}}" role="button" aria-expanded="false"
+          aria-controls="collapse{{topic.id}}" style="margin:3px; word-wrap: break-word; white-space: normal;">
+            {{ topic.sp1topic }} <span id="ans{{topic.id}}"></span>
+          </a><br>
+              <div class="collapse" id="collapse{{topic.id}}">
+                <div class="card card-body" id="ans_{{ topic.answers__id }}">
+                  <p class="alert alert-danger">Please write your answer below.</p>
+                  <form action="{% url 'speakp1app:set_answer' topic.id %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <textarea name="ans" class="form-control" rows="4"></textarea>
+                    </div>
+                    <div class="text-right">
+                      <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+            {% endif %}
+
+        {% endfor %}
+
+      {% else %}
+        <p>No topics are available.</p>
+      {% endif %}
+          <hr><br>
+      </div>
+      <div class="col-sm asidesm">
+      </div>
+  </div>
+
+</div>
+{% csrf_token %}
+
+{% endblock %}

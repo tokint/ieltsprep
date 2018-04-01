@@ -1,0 +1,14 @@
+<h3>{{topic.sp1topic}}</h3>
+<br>
+{% if answer %}
+  {{answer.answer}}
+{% else %}
+  <p>No aswer</p>
+  <form action="{% url 'speakp1app:set_answer' topic.id %}" method="post">
+
+    {% csrf_token %}
+
+    <textarea name=ans></textarea>
+    <input type="submit" value="Save" />
+  </form>
+{% endif %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm asidesm">
+    </div>
+    <div class="col-sm"><br><br>
+{% if latest_articles_list %}
+
+    {% for article in latest_articles_list %}
+        <h3>{{ article.article_title }}</h3>
+        <p>{{ article.article_text }}</p>
+        <br>
+        <hr>
+    {% endfor %}
+
+
+{% else %}
+    <p>No article are available.</p>
+{% endif %}
+    </div>
+    <div class="col-sm asidesm">
+    </div>
+  </div>
+</div>
+
+{% endblock %}
