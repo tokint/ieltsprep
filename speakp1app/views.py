@@ -5,16 +5,21 @@ from .models import Ieltsspeakingp1topic, Answers
 #from django.db.models import Q
 #from operator import itemgetter, attrgetter
 from operator import itemgetter
+#from ieltsprep.lib.wstat import UserAnswers
+from lib.wstat import UserAnswers
+
 
 @login_required
 def index(request):
     full_topic_list = Ieltsspeakingp1topic.objects.all().values('id', 'sp1topic', 'answers__answer', 'answers__id', 'answers__uid')
     topic_list = [] # collect questions and answers for current user
     list_in = [] # collect question id which is added in topic_list
+    all_answers = ''
     for topic in full_topic_list :
         if topic['answers__uid'] == request.user.id : # question is answered by current user
             topic_list.append(topic)
             list_in.append(topic['id'])
+            all_answers += topic['answers__answer'] + " "
         elif topic['answers__uid'] == None: # questions without any answers
             topic_list.append(topic)
             list_in.append(topic['id'])
@@ -25,8 +30,10 @@ def index(request):
             topic_list.append(tpc)
             list_in.append(topic['id'])
 
+    ua = UserAnswers(all_answers)
+    wcount = ua.words_count
     topic_list = sorted(topic_list, key=itemgetter('id'))
-    context = {'topic_list': topic_list}
+    context = {'topic_list': topic_list, 'answers' : wcount}
     return render(request, 'speakp1app/index.html', context)
 
 def topicdetail(request, topic_id):

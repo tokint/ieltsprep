@@ -65,6 +65,42 @@
           <hr><br>
       </div>
       <div class="col-sm asidesm">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Your answers' statistic</h5>
+            <h6 class="card-subtitle mb-2 text-muted">&nbsp;&nbsp;This is the aggregate from all your answers.</h6>
+            <ul class="list-group">
+              <li class="list-group-item">Words : {{answers.wc}}</li>
+              <li class="list-group-item">Unique words : {{answers.uwc}}</li>
+            </ul>
+            <hr>
+            <a class="btn btn-secondary col-lg-12 col-sm-12" data-toggle="collapse"
+            href="#collapse_common_words" role="button" aria-expanded="false"
+            aria-controls="collapse_common_words" style="margin:3px; word-wrap: break-word; white-space: normal;">
+                50 common used words
+            </a>
+            <div class="collapse" id="collapse_common_words">
+              <div class="card card-body">
+                <table class="table table-hover table-sm">
+                  <thead>
+                    <tr>
+                      <th scope="col">Word</th>
+                      <th scope="col">Count</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for words,count in answers.cntr.items %}
+                      <tr>
+                        <td>{{words}}</td><td>{{count}}</td>
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
   </div>
 
