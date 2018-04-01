@@ -47,17 +47,28 @@ def set_answer(request, topic_id):
     return redirect(url)
 
 def del_answer(request, answer_id):
-    # checking for uid is needed here
-    # make POST instead GET
     tid = Answers.objects.get(id=answer_id)
-    tid.delete()
-    return HttpResponse('OK')
+
+    if tid.uid == request.user.id :
+        tid.delete()
+        resp = "OK"
+    else:
+        resp = "DENY"
+
+    return HttpResponse(resp)
 
 
 def upd_answer(request, answer_id):
     auid = Answers.objects.get(id=answer_id)
     uid = request.user.id
-    ans = request.POST['ans']
-    auid.answer = ans
-    auid.save()
-    return HttpResponse('OK')
+
+    if auid.uid == uid :
+        ans = request.POST['ans']
+        auid.answer = ans
+        auid.save()
+        resp = "OK"
+    else:
+        resp = "DENY"
+
+
+    return HttpResponse(resp)
