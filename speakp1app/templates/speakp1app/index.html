@@ -68,8 +68,11 @@
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">Your answers' statistic</h5>
-            <h6 class="card-subtitle mb-2 text-muted">&nbsp;&nbsp;This is the aggregate from all your answers.</h6>
+            <h6 class="card-subtitle mb-2 text-muted">&nbsp;&nbsp;This is the aggregate from all your answers in this section.</h6>
             <ul class="list-group">
+              <li class="list-group-item">Total question : {{ topic_list|length }}</li>
+              <li class="list-group-item">Answered question : {{ answered.0 }}</li>
+              <li class="list-group-item">Unanswered question : {{ answered.1 }}</li>
               <li class="list-group-item">Words : {{answers.wc}}</li>
               <li class="list-group-item">Unique words : {{answers.uwc}}</li>
             </ul>
