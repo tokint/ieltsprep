@@ -4,8 +4,9 @@ from collections import Counter
 
 class UserAnswers:
 
-    def __init__(self, text):
+    def __init__(self, text, wcount):
         self.text = text
+        self.wcount = wcount
 
     def words_count(self):
         text = re.findall(r'\w+', self.text.lower())
@@ -18,4 +19,4 @@ class UserAnswers:
 
         uwc = len(word_count) # unique word's count
         wc = sum(word_count.values()) # all word's count
-        return {'wc' : wc, 'uwc' : uwc, 'cntr' : dict(word_count.most_common(50))}
+        return {'wc' : wc, 'uwc' : uwc, 'cntr' : dict(word_count.most_common(self.wcount))}

@@ -2,10 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .models import Ieltsspeakingp1topic, Answers
-#from django.db.models import Q
-#from operator import itemgetter, attrgetter
 from operator import itemgetter
-#from ieltsprep.lib.wstat import UserAnswers
 from lib.wstat import UserAnswers
 
 
@@ -32,7 +29,7 @@ def index(request):
             topic_list.append(tpc)
             list_in.append(topic['id'])
 
-    ua = UserAnswers(all_answers)
+    ua = UserAnswers(all_answers, 50)
     wcount = ua.words_count
     topic_list = sorted(topic_list, key=itemgetter('id'))
     context = {'topic_list': topic_list, 'answers' : wcount, 'answered': [answered_count, len(topic_list)-answered_count]}
