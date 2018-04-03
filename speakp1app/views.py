@@ -35,14 +35,6 @@ def index(request):
     context = {'topic_list': topic_list, 'answers' : wcount, 'answered': [answered_count, len(topic_list)-answered_count]}
     return render(request, 'speakp1app/index.html', context)
 
-def topicdetail(request, topic_id):
-    try:
-        topic = Ieltsspeakingp1topic.objects.get(pk=topic_id)
-        answer = Answers.objects.filter(topic=topic_id, uid=request.user.id).first()
-    except Ieltsspeakingp1topic.DoesNotExist:
-        raise Http404("Question does not exist")
-    return render(request, 'speakp1app/detail.html', {'topic': topic, 'answer': answer})
-
 def set_answer(request, topic_id):
     tid = Ieltsspeakingp1topic.objects.get(id=topic_id)
     ans = request.POST['ans']

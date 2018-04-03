@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm asidesm">
+    </div>
+    <div class="col-sm">
+      <br>
+      <h5>List of books for reading</h5>
+      <hr>
+      <ul class="list-group">
+    	  {% for file in filelist %}
+          <li class="list-group-item"><a href="{{file.bookroute}}">{{file.bookname}}</a></li>
+        {% endfor %}
+      </ul>
+      <br>
+    </div>
+    <div class="col-sm asidesm">
+    </div>
+  </div>
+</div>
+
+{% endblock %}

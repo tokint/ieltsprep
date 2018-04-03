@@ -1,0 +1,100 @@
+body, html {
+  height:100%
+}
+.book_content {
+  width: 100% auto;
+  height: 500px;
+  overflow-y: scroll;
+  background-color: #fff;
+  padding: 40px;
+  margin: 10px;
+  font-size: 16px;
+}
+
+.book_content_invert {
+  width: 100% auto;
+  height: 500px;
+  overflow-y: scroll;
+  background-color: #000;
+  color: #fff;
+  padding: 40px;
+  margin: 10px;
+  font-size: 16px;
+}
+
+
+.manage {
+  width: 100% auto;
+  padding: 0 40px 0 40px;
+  margin: 0 10px 0 10px;
+}
+
+#increase {
+  font-size: 18px;
+  padding: 0 10px 0 10px;
+  display: inline-block;
+  border-radius: 5px 5px 5px;
+  border: 1px solid black;
+  margin: 0 5px 0 5px;
+  cursor: pointer;
+}
+
+#decrease {
+  font-size: 16px;
+  padding: 1px 10px 1px 10px;
+  display: inline-block;
+  border-radius: 5px 5px 5px;
+  border: 1px solid black;
+  margin: 0 5px 0 5px;
+  cursor: pointer;
+}
+
+.invert {
+  font-size: 16px;
+  padding: 1px 10px 1px 10px;
+  display: inline-block;
+  border-radius: 5px 5px 5px;
+  border: 1px solid black;
+  margin: 0 5px 0 5px;
+  cursor: pointer;
+  background-color: #000;
+  color: #fff;
+}
+
+.r_invert {
+  font-size: 16px;
+  padding: 1px 10px 1px 10px;
+  display: inline-block;
+  border-radius: 5px 5px 5px;
+  border: 1px solid black;
+  margin: 0 5px 0 5px;
+  cursor: pointer;
+  background-color: #fff;
+  color: #000;
+}
+
+.auto_scroll_down {
+  font-size: 16px;
+  padding: 1px 10px 1px 10px;
+  display: inline-block;
+  border-radius: 5px 5px 5px;
+  border: 1px solid black;
+  margin: 0 5px 0 5px;
+  cursor: pointer;
+}
+
+.act_auto_scroll_down {
+  font-size: 16px;
+  padding: 1px 10px 1px 10px;
+  display: inline-block;
+  border-radius: 5px 5px 5px;
+  border: 1px solid black;
+  margin: 0 5px 0 5px;
+  cursor: pointer;
+  background-color: #f00;
+  color: #fff;
+}
+
+#scroll_speed {
+  display: none;
+}

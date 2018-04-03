@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12 asidesm">
+    </div>
+    <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12">
+      <div class=row>
+        <div class=col-sm>
+          <h3>{{title}}</h3>
+          <n4>Author {{author}}</h4>
+        </div>
+        <div class=col-sm>
+          Word's count : {{wc.wc}}<br>
+          Unique word's count: {{wc.uwc}}
+          <a class="btn btn-secondary col-lg-12 col-sm-12" data-toggle="collapse"
+          href="#collapse_common_words" role="button" aria-expanded="false"
+          aria-controls="collapse_common_words" style="margin:3px; word-wrap: break-word; white-space: normal;">
+              {{wc.cntr|length}} common used words
+          </a>
+          <div class="collapse" id="collapse_common_words">
+            <div class="card card-body">
+              <table class="table table-hover table-sm">
+                <thead>
+                  <tr>
+                    <th scope="col">Word</th>
+                    <th scope="col">Count</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for words,count in wc.cntr.items %}
+                    <tr>
+                      <td>{{words}}</td><td>{{count}}</td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <br>
+
+      <div class=manage>
+        <!--
+        <span id=increase title="Click to increase font size">A&uarr;</span>
+        <span id=decrease title="Click to decrease font size">A&darr;</span>
+      -->
+        <span class=invert id=invert  title="Click to invert font and background color">Abc</span>
+        <span class=auto_scroll_down id=auto_scroll_down  title="Click to turn on auto scrolling">&darr;&darr;&darr;</span>
+        <span id=scroll_speed>
+          <label for=weight>Speed: </label>
+          <input type=range id=speed min=900 value=900 max=1960 step=20>
+        </span>
+      </div>
+      <div class=book_content id=book_content>
+        {{text |safe}}
+      </div>
+
+    </div>
+    <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12 asidesm">
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+{% block js %}
+{{ block.super }}
+    <script src="/static/js/book_reader.js"></script>
+{% endblock %}
