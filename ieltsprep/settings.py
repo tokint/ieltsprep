@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ieltsapp.apps.IeltsappConfig',
     'speakp1app.apps.Speakp1AppConfig',
+    'speakp2app.apps.Speakp2AppConfig',
     'reading.apps.ReadingConfig',
 ]
 

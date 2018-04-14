@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load string_split %}
+{% block title %}IELTS speaking part 2 common questions list{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm asidesm">
+    </div>
+    <div class="col-sm">
+      <br>
+      <h2>List of questions</h2>
+      <p>List of common speaking test part two questions.</p>
+      <hr>
+        {% for topic in topic_list %}
+          {{ topic.sp2topic }}<br>
+          You should say: <br>
+          {% with topic.sp2question|split:";" as questions %}
+            {% for quest in questions %}
+              {{quest}}<br>
+            {% endfor %}
+          {% endwith %}
+          <br>
+        {%endfor%}
+      </div>
+      <div class="col-sm asidesm">
+
+      </div>
+  </div>
+
+</div>
+{% csrf_token %}
+
+{% endblock %}
