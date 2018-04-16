@@ -35,3 +35,38 @@ def index(request):
     topic_list = sorted(topic_list, key=itemgetter('id'))
     context = {'topic_list': topic_list, 'answers' : wcount, 'answered': [answered_count, len(topic_list)-answered_count]}
     return render(request, 'speakp2app/index.html',context)
+
+def set_answer(request, topic_id):
+    tid = Ieltsspeakingp2topic.objects.get(id=topic_id)
+    ans = request.POST['ans']
+    uid = request.user.id
+    query = Answers(topic=tid, answer=ans, uid=uid)
+    query.save()
+    url = '/sp2/'
+    return redirect(url)
+
+def del_answer(request, answer_id):
+    tid = Answers.objects.get(id=answer_id)
+
+    if tid.uid == request.user.id :
+        tid.delete()
+        resp = "OK"
+    else:
+        resp = "DENY"
+
+    return HttpResponse(resp)
+
+def upd_answer(request, answer_id):
+    auid = Answers.objects.get(id=answer_id)
+    uid = request.user.id
+
+    if auid.uid == uid :
+        ans = request.POST['ans']
+        auid.answer = ans
+        auid.save()
+        resp = "OK"
+    else:
+        resp = "DENY"
+
+
+    return HttpResponse(resp)

@@ -1,18 +1,17 @@
+
+var urlpath = window.location.pathname;
+
 $('.delbutton').click(function(e){
   var id = e.target.id.split('_')[1];
   var pid = "#ans_"+id;
   var answer = confirm('Do you realy want to delete?');
   if(answer){
-    //window.location = "/sp1/"+id+"/del_answer/";
     $.ajax({
-        url:'/sp1/'+id+'/del_answer/',
+        url: urlpath + id + '/del_answer/',
         type: "GET",
-        //data: {ans: newtext, csrfmiddlewaretoken: secur},
-        //data: {},
         success:function(response){
           var secur = $("input[name = 'csrfmiddlewaretoken']").val();
           var topic = $(pid).parent().parent().attr('id').split('collapse')[1];
-          //console.log('zzzzzz'+topic);
           newhtml = '<p class="alert alert-danger">Please write your answer below.</p>';
           newhtml += '<form action="/sp1/'+topic+'/set_answer/" method="post">';
           newhtml += '<input type="hidden" name="csrfmiddlewaretoken" value="'+secur+'">';
@@ -58,7 +57,7 @@ function save_edited(e){
   var newtext = $(tid).val();
   var secur = $("input[name = 'csrfmiddlewaretoken']").val();
   $.ajax({
-      url:'/sp1/'+id+'/upd_answer/',
+      url: urlpath + id + '/upd_answer/',
       type: "POST",
       data: {ans: newtext, csrfmiddlewaretoken: secur},
       success:function(response){
