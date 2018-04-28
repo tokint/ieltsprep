@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'ieltsapp.apps.IeltsappConfig',
     'speakp1app.apps.Speakp1AppConfig',
     'speakp2app.apps.Speakp2AppConfig',
+    'writep2app.apps.Writep2AppConfig',
     'reading.apps.ReadingConfig',
 ]
 

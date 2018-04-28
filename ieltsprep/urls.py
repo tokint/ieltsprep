@@ -20,6 +20,7 @@ urlpatterns = [
     path('', include('ieltsapp.urls')),
     path('sp1/', include('speakp1app.urls')),
     path('sp2/', include('speakp2app.urls')),
+    path('wr2/', include('writep2app.urls')),
     path('reading/', include('reading.urls')),
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
