@@ -5,6 +5,8 @@ from .models import Ieltswritingp2topic, Answers
 from operator import itemgetter
 from lib.wstat import UserAnswers
 
+@login_required
+
 def index(request):
     full_topic_list = Ieltswritingp2topic.objects.all().values('id', 'wr2topic','wr2question','wr2sampleurl', 'answers__answer', 'answers__id', 'answers__uid')
     topic_list = [] # collect questions and answers for current user
